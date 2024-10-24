@@ -26,7 +26,7 @@ SECRET_KEY = 'django-insecure-2m^py3nkss%_^$$cf@2n6tp1qmmq9_#h=7(kmtjd3*+3s#f-h-
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ["lobster-app-ftxys.ondigitalocean.app"]
 
 
 # Application definition

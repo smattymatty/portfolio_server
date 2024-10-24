@@ -122,7 +122,7 @@ CORS_ALLOWED_ORIGINS = [
     "http://127.0.0.1:5500",  # Local development URL
     "https://yourdomain.com",  # Add your domain here
     "https://lobster-app-ftxys.ondigitalocean.app",  # The app you're hosting
-    "https://smattymatty.github.io/"
+    "https://smattymatty.github.io"
 ]
 
 # Static files (CSS, JavaScript, Images)

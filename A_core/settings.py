@@ -38,6 +38,7 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    'corsheaders',
     'A_base',
     'A_home',
     'A_content',
@@ -47,6 +48,7 @@ INSTALLED_APPS = [
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
+    'corsheaders.middleware.CorsMiddleware',
     'django.middleware.common.CommonMiddleware',
     'django.middleware.csrf.CsrfViewMiddleware',
     'django.contrib.auth.middleware.AuthenticationMiddleware',
@@ -116,6 +118,12 @@ USE_I18N = True
 
 USE_TZ = True
 
+CORS_ALLOWED_ORIGINS = [
+    "http://127.0.0.1:5500",  # Local development URL
+    "https://yourdomain.com",  # Add your domain here
+    "https://lobster-app-ftxys.ondigitalocean.app",  # The app you're hosting
+    "https://smattymatty.github.io/"
+]
 
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/5.1/howto/static-files/

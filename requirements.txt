@@ -3,6 +3,7 @@ click==8.1.7
 colorama==0.4.6
 cssbeautifier==1.15.1
 Django==5.1.2
+django-cors-headers==4.5.0
 djlint==1.35.2
 EditorConfig==0.12.4
 gunicorn==23.0.0

@@ -26,7 +26,7 @@ SECRET_KEY = 'django-insecure-2m^py3nkss%_^$$cf@2n6tp1qmmq9_#h=7(kmtjd3*+3s#f-h-
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ["lobster-app-ftxys.ondigitalocean.app"]
+ALLOWED_HOSTS = ["lobster-app-ftxys.ondigitalocean.app", "localhost"]
 
 
 # Application definition
@@ -122,10 +122,6 @@ USE_TZ = True
 
 STATIC_URL = 'static/'
 STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
-
-STATICFILES_DIRS = [
-    os.path.join(BASE_DIR, 'static'),
-]
 
 # Default primary key field type
 # https://docs.djangoproject.com/en/5.1/ref/settings/#default-auto-field

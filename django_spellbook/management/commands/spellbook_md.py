@@ -48,6 +48,7 @@ class Command(BaseCommand):
                 self.get_content_dir_path(dirpath)
             print(f"Processing {dirpath}")
             print(f"dirnames: {dirnames}")
+            print(f"filenames: {filenames}")
             for filename in filenames:
                 if filename.endswith(".md"):
                     folder_list = self.get_folder_list(dirpath)

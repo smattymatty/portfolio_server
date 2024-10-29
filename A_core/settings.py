@@ -24,7 +24,7 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 SECRET_KEY = 'django-insecure-2m^py3nkss%_^$$cf@2n6tp1qmmq9_#h=7(kmtjd3*+3s#f-h-'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG = False
 
 ALLOWED_HOSTS = ["lobster-app-ftxys.ondigitalocean.app", "localhost"]
 
@@ -127,8 +127,9 @@ CORS_ALLOWED_ORIGINS = [
 
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/5.1/howto/static-files/
-
-STATIC_URL = 'static/'
+# settings.py
+STATIC_HOST = 'https://lobster-app-ftxys.ondigitalocean.app' if not DEBUG else ''
+STATIC_URL = f'{STATIC_HOST}/static/'
 STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
 
 STATICFILES_STORAGE = 'django.contrib.staticfiles.storage.ManifestStaticFilesStorage'

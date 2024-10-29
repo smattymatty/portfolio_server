@@ -119,9 +119,9 @@ USE_I18N = True
 USE_TZ = True
 
 CORS_ALLOWED_ORIGINS = [
-    "http://127.0.0.1:5500",  # Local development URL
-    "https://yourdomain.com",  # Add your domain here
-    "https://lobster-app-ftxys.ondigitalocean.app",  # The app you're hosting
+    "http://127.0.0.1:5500",
+    "https://yourdomain.com",
+    "https://lobster-app-ftxys.ondigitalocean.app",
     "https://smattymatty.github.io"
 ]
 

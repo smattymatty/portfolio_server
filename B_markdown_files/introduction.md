@@ -1,7 +1,6 @@
 # Who Am I?
 
-An all-stack web developer with who aims to create beautiful, functional, and accessible user interfaces to go along with web applications that solve real problems.
-I'm often working on projects that involve Django, HTMX, and the three frontend technologies of HTML, CSS, and JavaScript.
+A Full-Stack Developer who specializes in creating beautiful, functional, and accessible user interfaces to pair with web apps that solve real problems. I'm often working on projects that involve Django, HTMX, and the three front-end web technologies (CSS, HTML, JavaScript).
 
 # Back End Development
 

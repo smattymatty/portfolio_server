@@ -10,6 +10,7 @@ Django stands out as a high-level Python web framework that encourages rapid dev
 It's open source community, easy to understand documentation, and vast supply of tutorials makes it a great option for back end development.
 
 Key strengths:
+
 - Automatic admin interface generation
 - Robust security features out of the box
 - Highly scalable with built-in caching support
@@ -30,6 +31,7 @@ class Book(models.Model):
 
 ## DigitalOcean
 DigitalOcean provides a robust cloud infrastructure that simplifies deployment and scaling. Their App Platform offers:
+
 - Automated deployments from Git
 - Built-in SSL certificate management
 - Automatic horizontal scaling
@@ -37,6 +39,7 @@ DigitalOcean provides a robust cloud infrastructure that simplifies deployment a
 
 ## Linux
 The backbone of modern web hosting, Linux provides:
+
 - Superior process management with systemd
 - Efficient resource utilization
 - Robust containerization support
@@ -46,6 +49,7 @@ The backbone of modern web hosting, Linux provides:
 
 ## HTMX
 HTMX extends HTML's capabilities to create dynamic interfaces without complex JavaScript frameworks. It excels at:
+
 - Ajax requests directly from HTML
 - WebSocket integration
 - Server-Sent Events
@@ -62,6 +66,7 @@ HTMX extends HTML's capabilities to create dynamic interfaces without complex Ja
 
 ## CSS and HTML
 Modern CSS provides powerful features for creating responsive, accessible interfaces:
+
 - CSS Grid for complex layouts
 - Custom Properties for theming
 - Container Queries for component-based design
@@ -79,6 +84,7 @@ Modern CSS provides powerful features for creating responsive, accessible interf
 
 ## JavaScript
 JavaScript enables complex client-side interactions while maintaining accessibility:
+
 - Async/await for clean asynchronous code
 - Web Components for reusable elements
 - Intersection Observer for performance
@@ -99,6 +105,7 @@ class CustomElement extends HTMLElement {
 ```
 
 This tech stack combines to create web applications that are:
+
 - Highly performant
 - Accessible by default
 - Easy to maintain

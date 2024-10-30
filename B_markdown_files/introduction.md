@@ -1,60 +1,105 @@
-# Who Am I?
+# Full-Stack Development
 
-A Full-Stack Developer who specializes in creating beautiful, functional, and accessible user interfaces to pair with web apps that solve real problems. I'm often working on projects that involve Django, HTMX, and the three front-end web technologies (CSS, HTML, JavaScript).
+Creating beautiful, functional, and accessible user interfaces paired with robust web applications requires a carefully chosen tech stack. Here's an overview of the key technologies that make modern web development powerful and efficient.
 
 # Back End Development
 
 ## Django
+Django stands out as a high-level Python web framework that encourages rapid development and clean, pragmatic design. Its built-in admin interface, ORM, and authentication system significantly reduce development time while maintaining security and scalability.
 
-My passion for web development begain when I `pip install`d Django and started my first project **4 years ago**. I've followed many online tutorials and created my own [cheat sheet](https://smattymatty.notion.site/Django-ff0fa4854ec44d7095805c4d4d6f79cb?pvs=4) that I used while learning.
-The more I played with Django, and read through their documentation, the more I realized how powerful and flexible it is, and the less I had to rely on the cheat sheet.
+It's open source community, easy to understand documentation, and vast supply of tutorials makes it a great option for back end development.
 
-TODO: Django Spellbook Open Source Library
-TODO: Django 5 by example blog posts
+Key strengths:
+- Automatic admin interface generation
+- Robust security features out of the box
+- Highly scalable with built-in caching support
+- Extensive middleware system for request/response processing
+
+```python
+# Example of Django's powerful ORM
+from django.db import models
+
+class Book(models.Model):
+    title = models.CharField(max_length=200)
+    author = models.ForeignKey('Author', on_delete=models.CASCADE)
+    published = models.DateField()
+
+    def get_related_books(self):
+        return Book.objects.filter(author=self.author).exclude(id=self.id)
+```
 
 ## DigitalOcean
-
-I've been using DigitalOcean for the past year, and I'm very happy with it. It's user experience is fantastic and inspiring, and their documentation and tutorials are easy to follow. The content you are reading right now is hosted on DigitalOcean, and you can see the source code [here](TODO: add link).
+DigitalOcean provides a robust cloud infrastructure that simplifies deployment and scaling. Their App Platform offers:
+- Automated deployments from Git
+- Built-in SSL certificate management
+- Automatic horizontal scaling
+- Container registry and Kubernetes support
 
 ## Linux
-
-I've been using Linux for the past year, Linux Mint has been my daily driver. I enjoy the customization and the simplicity of the interface. I also enjoy the fact that I can use the terminal to do everything I need to do.
-
-**Gunicorn** and **Docker** are mainly available for Linux, that's why I began using it. Over the past year I've switched entirely to Linux and I'm very happy with it.
+The backbone of modern web hosting, Linux provides:
+- Superior process management with systemd
+- Efficient resource utilization
+- Robust containerization support
+- Comprehensive logging and monitoring
 
 # Front End Development
 
 ## HTMX
-
-This is the newest piece of technology in my arsenal, and I've been using it for the past year. It makes beautiful use of the simplicity of original HTML, and allows you to create interactive web applications without the need for JavaScript.
+HTMX extends HTML's capabilities to create dynamic interfaces without complex JavaScript frameworks. It excels at:
+- Ajax requests directly from HTML
+- WebSocket integration
+- Server-Sent Events
+- Dynamic page updates
 
 ```html
-<button
-  hx-get="/api/get-data"
-  hx-swap="outerHTML"
-  hx-target="#data-container"
-  hx-trigger="mousedown"
->
-  Get Data
-</button>
-
-<div id="data-container"></div>
+<!-- Dynamic content loading with HTMX -->
+<div hx-get="/api/latest-posts" 
+     hx-trigger="every 2s"
+     hx-swap="innerHTML">
+  <!-- Content updates every 2 seconds -->
+</div>
 ```
 
-An example how it meshes with HTML's original simplicity. With just four extra attributes, you can create a button that fetches data from an API, and inserts that data without reloading the page.
-
-TODO: hypermedia systems blog posts
-TODO: htmxify Django 5 by example blog posts
-
 ## CSS and HTML
+Modern CSS provides powerful features for creating responsive, accessible interfaces:
+- CSS Grid for complex layouts
+- Custom Properties for theming
+- Container Queries for component-based design
+- Logical Properties for international layouts
 
-I started learning CSS through Tailwind. Their utility classes were a good entry point into the world of CSS, but lately I've been developing with just vanilla. I enjoy the freedom of creating my own classes and the pseudoselectors to go along with them.
-I have grown to love HTML, and have learned so much about it since I first began my journey. I've learned how to create semantic HTML, and how to use HTML's original simplicity to create beautiful user interfaces.
+```css
+/* Modern CSS example */
+.component {
+  container-type: inline-size;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: clamp(1rem, 5vw, 2rem);
+}
+```
 
 ## JavaScript
+JavaScript enables complex client-side interactions while maintaining accessibility:
+- Async/await for clean asynchronous code
+- Web Components for reusable elements
+- Intersection Observer for performance
+- Service Workers for offline capability
 
-JavaScript is an important language because it runs natively on the user's web browser. When I started using JavaScript, I saw it as a necessary evil, but the more I used it, the more I realized how powerful and flexible it is.
+```javascript
+// Modern JavaScript example
+class CustomElement extends HTMLElement {
+  constructor() {
+    super();
+    this.attachShadow({ mode: 'open' });
+  }
+  
+  connectedCallback() {
+    this.render();
+  }
+}
+```
 
-HTMX is part of my tool-kit not necessarily to entirely avoid JavaScript, but to combine the two technologies to create robust and interactive single-page applications that are accessible to all users.
-
-TODO: Melvor Mod Contest
+This tech stack combines to create web applications that are:
+- Highly performant
+- Accessible by default
+- Easy to maintain
+- Scalable for growth

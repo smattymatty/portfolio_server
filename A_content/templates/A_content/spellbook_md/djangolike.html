@@ -1,0 +1,33 @@
+{% extends 'A_content/sb_base.html' %}
+
+{% block spellbook_md %}
+<p>Regular markdown text here</p>
+<div class="custom-class" id="unique-id" test="value">
+<p>This is inside a div with:
+- custom class
+- unique ID
+- data attribute
+  </p>
+</div>
+<section class="hero bg-primary">
+<h1>Hero Section</h1>
+<p>Some content here with <strong>bold</strong> and <em>italic</em> text
+</p>
+</section>
+<aside class="notes" id="sidebar" role="complementary">
+<blockquote>
+<p>Important note
+1. First point
+2. Second point
+   </p>
+</blockquote>
+</aside>
+<article author="john" class="blog-post" id="post-1">
+<h2>Blog Post Title</h2>
+<p>Regular paragraph with <a href="https://example.com">link</a>
+- List item 1
+- List item 2</p>
+<pre><code class="language-code">Some code block
+</code></pre>
+</article>
+{% endblock %}

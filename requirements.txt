@@ -14,6 +14,7 @@ json5==0.9.25
 Markdown==3.7
 packaging==24.1
 pathspec==0.12.1
+python-decouple==3.8
 PyYAML==6.0.2
 regex==2024.9.11
 six==1.16.0

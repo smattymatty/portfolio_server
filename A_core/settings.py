@@ -13,6 +13,8 @@ import sys
 import os
 from pathlib import Path
 
+from decouple import config
+
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
 
@@ -20,18 +22,11 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/5.1/howto/deployment/checklist/
 
-# SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = 'django-insecure-2m^py3nkss%_^$$cf@2n6tp1qmmq9_#h=7(kmtjd3*+3s#f-h-'
+SECRET_KEY = config('SECRET_KEY')
 
-# SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = False
+DEBUG = config('DEBUG', cast=bool)
 
-ALLOWED_HOSTS = [
-    "lobster-app-ftxys.ondigitalocean.app",
-    "localhost",
-    "http://127.0.0.1:5500",
-    "http://localhost:5500",
-]
+ALLOWED_HOSTS = config('ALLOWED_HOSTS', cast=list)
 
 
 # Application definition

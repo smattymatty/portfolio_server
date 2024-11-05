@@ -26,7 +26,12 @@ SECRET_KEY = config('SECRET_KEY')
 
 DEBUG = config('DEBUG', cast=bool)
 
-ALLOWED_HOSTS = config('ALLOWED_HOSTS', cast=list)
+ALLOWED_HOSTS = [
+    "lobster-app-ftxys.ondigitalocean.app",
+    "localhost",
+    "http://127.0.0.1:5500",
+    "http://localhost:5500",
+]
 
 
 # Application definition

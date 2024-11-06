@@ -12,7 +12,7 @@ Here's an overview of the key technologies that make modern web development powe
 
 Django stands out as a high-level Python web framework that encourages rapid development and clean, pragmatic design. Its built-in admin interface, ORM, and authentication system significantly reduce development time while maintaining security and scalability.
 
-It's open source community, easy to understand documentation, and vast supply of tutorials makes it a great option for back end development.
+Django's open & friendly community, well-written documentation, and vast supply of tutorials had made it a great option for back end development. Since it is 'batteries included', it's easy to get started with a project, and it's a great choice for small to medium sized projects.
 
 Key strengths:
 
@@ -21,7 +21,10 @@ Key strengths:
 - Highly scalable with built-in caching support
 - Extensive middleware system for request/response processing
 
+The content that you are reading right now is hosted on a Django project, [github here](https://github.com/smattymatty/portfolio_server)
+
 TODO: Link to Django Spellbook Open Source Library
+
 TODO: Django 5 by example blog posts
 
 ```python
@@ -57,7 +60,7 @@ The backbone of modern web hosting, Linux provides:
 - Robust containerization support
 - Comprehensive logging and monitoring
 
-I started using Linux in 2019 because of easier access to Docker and Gunicorn, and because I wanted more contol over my system's resources in order to properly test and deploy my web applications. I love how customizable Linux is, and it's great open source community that provides a lot of great tools that are often on par with, or better than, commercial offerings. Plus, I'm a huge fan of the Linux philosophy of "Do one thing and do it well", and I think it's a great way to build a solid foundation for your web development projects.
+I started using Linux in 2019 because I needed access to Docker and Gunicorn, and because I wanted more contol over my system's resources in order to properly test and deploy my web applications. I love how customizable Linux is, and it's great open source community that provides a lot of great tools that are often on par with, or better than, commercial offerings. Plus, I'm a huge fan of the Linux philosophy of "Do one thing and do it well", and I think it's a great way to build a solid foundation for your web development projects.
 
 # Front End Development
 
@@ -72,29 +75,42 @@ HTMX extends HTML's capabilities to create dynamic interfaces without complex Ja
 
 ```html
 <!-- Dynamic content loading with HTMX -->
-<div hx-get="/api/latest-posts" hx-trigger="every 2s" hx-swap="innerHTML">
-  <!-- Content updates every 2 seconds -->
+<div 
+  hx-get="/api/latest-posts" 
+  hx-trigger="every 2s" 
+  hx-swap="innerHTML">
+  <!-- Content updates every 2 seconds from the server -->
 </div>
 ```
 
-The way it meshes with the original simplicity of HTML's original design is a game changer. Instead of overly complex JavaScript frameworks, HTMX allows you to create dynamic interfaces without the need for JavaScript. I still like using Vanilla JavaScript for more complex interactions, but HTMX is a great tool for creating simple, dynamic interfaces without the overhead of a full JavaScript framework.
+The way HTMX meshes with the original simplicity of HTML's original design is a game changer. Instead of overly complex JavaScript frameworks, HTMX allows you to create dynamic interfaces without the need for JavaScript. I still like using Vanilla JavaScript for more complex interactions, but HTMX is a great tool for creating simple, dynamic interfaces without the overhead of a full JavaScript framework.
+
+TODO: HTMX-ify your Django Blog
 
 ## CSS and HTML
 
-Modern CSS provides powerful features for creating responsive, accessible interfaces:
+With modern CSS, building responsive and accessible interfaces is more streamlined:
 
-- CSS Grid for complex layouts
-- Custom Properties for theming
-- Container Queries for component-based design
-- Logical Properties for international layouts
+- Flexbox for arranging elements in flexible layouts, ideal for rows, columns, and aligning items.
+- Custom Properties to create themes that can adapt to dark/light modes or user preferences.
+- Media Queries to ensure content displays well on any device size, with tailored layouts and font adjustments.
+- Pseudoselectors to enhance interactive elements like buttons and links, making them visually engaging.
 
 ```css
-/* Modern CSS example */
-.component {
-  container-type: inline-size;
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-  gap: clamp(1rem, 5vw, 2rem);
+/* Flexbox Layout with Media Queries */
+.container {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1.5rem;
+  padding: 1rem;
+  justify-content: space-around;
+}
+
+@media (max-width: 768px) {
+  .container {
+    flex-direction: column;
+    align-items: center;
+  }
 }
 ```
 

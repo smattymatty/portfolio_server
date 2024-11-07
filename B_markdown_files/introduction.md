@@ -1,3 +1,6 @@
+{% div style="padding: 1rem; background-color: #f8f9fa" %}
+{% enddiv %}
+
 This website is my personal portfolio, and my playground for learning new technologies and web development. I'm constantly learning and improving my skills, and I'm posting my progress here to share with others.
 
 The front-end of this website is deployed through GitHub Pages, ([Repo Here](https://github.com/smattymatty/smattymatty.github.io)), and the back-end is hosted on DigitalOcean. 

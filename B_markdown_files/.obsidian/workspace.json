@@ -162,6 +162,9 @@
       "command-palette:Open command palette": false
     }
   },
-  "active": "d4ea04a4fd0b7b39",
-  "lastOpenFiles": []
+  "active": "f8a9cca92d7b2327",
+  "lastOpenFiles": [
+    "spellbook/sb_intro.md",
+    "spellbook"
+  ]
 }

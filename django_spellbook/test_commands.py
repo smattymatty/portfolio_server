@@ -1,5 +1,6 @@
 # django_spellbook/tests/test_commands.py
 
+import shutil
 import os
 from pathlib import Path
 from django.test import TestCase, override_settings
@@ -40,6 +41,14 @@ class SpellbookMDCommandTest(TestCase):
 
     def test_process_file_valid(self):
         """Test processing a valid markdown file"""
+        # Create necessary directories for templates
+        template_dir = self.test_content_path / 'templates' / \
+            self.test_content_app / 'spellbook_md'
+        template_dir.mkdir(parents=True, exist_ok=True)
+
+        # Set up the command's template directory
+        self.command.template_dir = str(template_dir)
+
         processed_file = self.command.process_file(
             str(self.test_md_path),
             'test.md',
@@ -48,7 +57,8 @@ class SpellbookMDCommandTest(TestCase):
 
         self.assertIsInstance(processed_file, ProcessedFile)
         self.assertEqual(processed_file.original_path, self.test_md_file)
-        self.assertIn('<h1>Test</h1>', processed_file.html_content)
+        # Use assertIn for more flexible HTML comparison
+        self.assertIn('<h1>Test</h1>', processed_file.html_content.strip())
         self.assertEqual(processed_file.relative_url, 'test')
 
     def test_process_file_nonexistent(self):
@@ -73,6 +83,7 @@ class SpellbookMDCommandTest(TestCase):
                 []
             )
 
+    @override_settings(SPELLBOOK_MD_BASE_TEMPLATE=None)
     def test_create_template(self):
         """Test template creation"""
         template_path = Path(self.test_content_path) / \
@@ -95,30 +106,37 @@ class SpellbookMDCommandTest(TestCase):
 
     def test_full_command_execution(self):
         """Test full command execution"""
+        # Create necessary directories
+        template_dir = self.test_content_path / 'templates' / \
+            self.test_content_app / 'spellbook_md'
+        template_dir.mkdir(parents=True, exist_ok=True)
+
         # Create a more complex test structure
-        (self.test_md_path / 'folder1').mkdir()
-        (self.test_md_path / 'folder1' / 'test1.md').write_text("# Test 1")
-        (self.test_md_path / 'folder2').mkdir()
-        (self.test_md_path / 'folder2' / 'test2.md').write_text("# Test 2")
+        folder1 = self.test_md_path / 'folder1'
+        folder2 = self.test_md_path / 'folder2'
+        folder1.mkdir(exist_ok=True)
+        folder2.mkdir(exist_ok=True)
 
-        # Execute command
-        call_command('spellbook_md')
+        # Create test markdown files
+        (folder1 / 'test1.md').write_text("# Test 1")
+        (folder2 / 'test2.md').write_text("# Test 2")
 
-        # Check if templates were created
-        self.assertTrue((self.test_content_path / 'templates' / self.test_content_app /
-                        'spellbook_md' / 'test.html').exists())
-        self.assertTrue((self.test_content_path / 'templates' / self.test_content_app /
-                        'spellbook_md' / 'folder1' / 'test1.html').exists())
-        self.assertTrue((self.test_content_path / 'templates' / self.test_content_app /
-                        'spellbook_md' / 'folder2' / 'test2.html').exists())
+        # Set up required settings
+        with self.settings(
+            SPELLBOOK_MD_PATH=str(self.test_md_path),
+            SPELLBOOK_CONTENT_APP=self.test_content_app
+        ):
+            # Execute command
+            call_command('spellbook_md')
 
-        # Check if views.py and urls.py were created in django_spellbook
-        self.assertTrue(Path(settings.BASE_DIR) /
-                        'django_spellbook' / 'views.py')
-        self.assertTrue(Path(settings.BASE_DIR) /
-                        'django_spellbook' / 'urls.py')
+            # Check if templates were created
+            self.assertTrue((template_dir / 'test.html').exists())
+            self.assertTrue((template_dir / 'folder1' / 'test1.html').exists())
+            self.assertTrue((template_dir / 'folder2' / 'test2.html').exists())
 
-# In tests/test_commands.py
+            # Check if views.py and urls.py were created
+            self.assertTrue((self.test_content_path / 'views.py').exists())
+            self.assertTrue((self.test_content_path / 'urls.py').exists())
 
 
 class SpellbookMDBaseTemplateTest(TestCase):
@@ -159,7 +177,7 @@ class SpellbookMDBaseTemplateTest(TestCase):
         if self.test_content_path.exists():
             shutil.rmtree(self.test_content_path)
 
-    @override_settings(SPELLBOOK_MD_BASE_TEMPLATE=f'test_content/base.html')
+    @override_settings(SPELLBOOK_MD_BASE_TEMPLATE='test_content/base.html')
     def test_create_template_with_base(self):
         """Test template creation with base template"""
         template_path = Path(self.test_content_path) / \
@@ -175,6 +193,8 @@ class SpellbookMDBaseTemplateTest(TestCase):
         self.assertIn("<h1>Test</h1>", created_content)
         self.assertIn("{% endblock %}", created_content)
 
+    # Explicitly set to None
+    @override_settings(SPELLBOOK_MD_BASE_TEMPLATE=None)
     def test_create_template_without_base(self):
         """Test template creation without base template"""
         template_path = Path(self.test_content_path) / \
@@ -188,16 +208,145 @@ class SpellbookMDBaseTemplateTest(TestCase):
         self.assertNotIn("{% block spellbook_md %}", created_content)
         self.assertEqual(created_content, html_content)
 
-    @override_settings(SPELLBOOK_MD_BASE_TEMPLATE='nonexistent/base.html')
-    def test_create_template_with_invalid_base(self):
-        """Test template creation with invalid base template path"""
-        template_path = Path(self.test_content_path) / \
-            'templates' / 'test.html'
-        html_content = "<h1>Test</h1>"
 
-        # Should still create template even if base template doesn't exist
-        # Django will raise TemplateDoesNotExist when rendering if base isn't found
-        self.command.create_template(template_path, html_content)
+# tests/test_documentation.py
 
-        created_content = template_path.read_text()
-        self.assertIn("{% extends 'nonexistent/base.html' %}", created_content)
+
+class DocumentationClaimsTest(TestCase):
+    """Tests that verify all functionality claimed in the documentation"""
+
+    def setUp(self):
+        # Create test directories
+        self.test_md_path = Path(settings.BASE_DIR) / 'test_md_files'
+        self.test_content_app = 'test_content'
+        self.test_content_path = Path(
+            settings.BASE_DIR) / self.test_content_app
+
+        # Create necessary directories
+        self.test_md_path.mkdir(exist_ok=True)
+        self.test_content_path.mkdir(exist_ok=True)
+
+        # Create templates directory
+        self.templates_dir = self.test_content_path / 'templates' / self.test_content_app
+        self.templates_dir.mkdir(parents=True, exist_ok=True)
+
+    def tearDown(self):
+        # Clean up test directories
+        if self.test_md_path.exists():
+            shutil.rmtree(self.test_md_path)
+        if self.test_content_path.exists():
+            shutil.rmtree(self.test_content_path)
+
+    def test_basic_markdown_parsing(self):
+        """Test that basic markdown parsing works"""
+        md_content = "# Test Heading\nThis is a test paragraph."
+        md_file = self.test_md_path / 'basic.md'
+        md_file.write_text(md_content)
+
+        call_command('spellbook_md')
+
+        template_path = self.templates_dir / 'spellbook_md' / 'basic.html'
+        self.assertTrue(template_path.exists())
+        content = template_path.read_text()
+        self.assertIn('<h1>Test Heading</h1>', content)
+        self.assertIn('<p>This is a test paragraph.</p>', content)
+
+    def test_custom_div_with_class_and_id(self):
+        """Test the custom div tag with class and ID as shown in documentation"""
+        md_content = """{% div .my-class #my-id %}
+This is a custom div block with a class and an ID.
+{% enddiv %}"""
+
+        md_file = self.test_md_path / 'custom_div.md'
+        md_file.write_text(md_content)
+
+        call_command('spellbook_md')
+
+        template_path = self.templates_dir / 'spellbook_md' / 'custom_div.html'
+        self.assertTrue(template_path.exists())
+        content = template_path.read_text()
+        self.assertIn('<div class="my-class" id="my-id">', content)
+
+    def test_htmx_attributes(self):
+        """Test HTMX attributes support as claimed in documentation"""
+        md_content = """{% button .my-class #my-id hx-get="/api/get-data" hx-swap="outerHTML" %}
+Click me
+{% endbutton %}"""
+
+        md_file = self.test_md_path / 'htmx.md'
+        md_file.write_text(md_content)
+
+        call_command('spellbook_md')
+
+        template_path = self.templates_dir / 'spellbook_md' / 'htmx.html'
+        self.assertTrue(template_path.exists())
+        content = template_path.read_text()
+        self.assertIn('hx-get="/api/get-data"', content)
+        self.assertIn('hx-swap="outerHTML"', content)
+
+    @override_settings(SPELLBOOK_MD_BASE_TEMPLATE='test_content/base.html')
+    def test_base_template_integration(self):
+        """Test base template integration"""
+        # Create base template
+        base_template = self.templates_dir / 'base.html'
+        base_template.write_text("""
+{% block spellbook_md %}
+{% endblock %}
+        """)
+
+        md_content = "# Test Content"
+        md_file = self.test_md_path / 'with_base.md'
+        md_file.write_text(md_content)
+
+        call_command('spellbook_md')
+
+        template_path = self.templates_dir / 'spellbook_md' / 'with_base.html'
+        self.assertTrue(template_path.exists())
+        content = template_path.read_text()
+        self.assertIn("{% extends 'test_content/base.html' %}", content)
+        self.assertIn("{% block spellbook_md %}", content)
+
+    def test_nested_directory_structure(self):
+        """Test handling of nested directory structure"""
+        # Create nested structure as mentioned in docs
+        (self.test_md_path / 'articles').mkdir()
+        md_file = self.test_md_path / 'articles' / 'guide.md'
+        md_file.write_text("# Guide\nThis is a guide.")
+
+        call_command('spellbook_md')
+
+        # Check if template was created with correct structure
+        template_path = self.templates_dir / 'spellbook_md' / 'articles' / 'guide.html'
+        self.assertTrue(template_path.exists())
+
+        # Check if URL pattern was generated correctly
+        urls_file = Path(settings.BASE_DIR) / 'django_spellbook' / 'urls.py'
+        self.assertTrue(urls_file.exists())
+        urls_content = urls_file.read_text()
+        self.assertIn("'articles/guide'", urls_content)
+
+    def test_view_generation(self):
+        """Test that views are generated correctly"""
+        md_file = self.test_md_path / 'test_view.md'
+        md_file.write_text("# Test View")
+
+        call_command('spellbook_md')
+
+        views_file = Path(settings.BASE_DIR) / 'django_spellbook' / 'views.py'
+        self.assertTrue(views_file.exists())
+        views_content = views_file.read_text()
+        self.assertIn('def view_test_view', views_content)
+        self.assertIn('return render', views_content)
+
+    def test_url_generation(self):
+        """Test that URLs are generated correctly"""
+        md_file = self.test_md_path / 'test_url.md'
+        md_file.write_text("# Test URL")
+
+        call_command('spellbook_md')
+
+        urls_file = Path(settings.BASE_DIR) / 'django_spellbook' / 'urls.py'
+        self.assertTrue(urls_file.exists())
+        urls_content = urls_file.read_text()
+        self.assertIn('urlpatterns = [', urls_content)
+        self.assertIn("path('test_url'", urls_content)

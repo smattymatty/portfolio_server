@@ -1,17 +1,26 @@
 {% extends 'A_content/sb_base.html' %}
 
 {% block spellbook_md %}
-<h1>Full-Stack Development</h1>
-<p>Creating beautiful, functional, and accessible user interfaces paired with robust web applications requires a carefully chosen tech stack. Here's an overview of the key technologies that make modern web development powerful and efficient.</p>
+<p>This website is my personal portfolio, and my playground for learning new technologies and web development. I'm constantly learning and improving my skills, and I'm posting my progress here to share with others.</p>
+<p>The front-end of this website is deployed through GitHub Pages, ((Repo Here)[https://github.com/smattymatty/smattymatty.github.io]), and the back-end is hosted on DigitalOcean. </p>
+<h1>Full Stack Development</h1>
+<p>Creating beautiful, functional, and accessible user interfaces paired with robust web applications requires a carefully chosen tech stack.</p>
+<p>My go-to tech stack has changed over the years as I've learned more about web development. As new tools came and old tools went, I've found that I'm able to build more complex and powerful web applications with less code. </p>
+<p>Here's an overview of the key technologies that I make use of in my projects:</p>
 <h1>Back End Development</h1>
 <h2>Django</h2>
 <p>Django stands out as a high-level Python web framework that encourages rapid development and clean, pragmatic design. Its built-in admin interface, ORM, and authentication system significantly reduce development time while maintaining security and scalability.</p>
-<p>It's open source community, easy to understand documentation, and vast supply of tutorials makes it a great option for back end development.</p>
-<p>Key strengths:
-- Automatic admin interface generation
-- Robust security features out of the box
-- Highly scalable with built-in caching support
-- Extensive middleware system for request/response processing</p>
+<p>Django's open &amp; friendly community, well-written documentation, and vast supply of tutorials has made it a great option for back end development. Since it is 'batteries included', it's easy to get started with a project, and it's a great choice for small to medium sized projects.</p>
+<p>Key strengths:</p>
+<ul>
+<li>Automatic admin interface generation</li>
+<li>Robust security features out of the box</li>
+<li>Highly scalable with built-in caching support</li>
+<li>Extensive middleware system for request/response processing</li>
+</ul>
+<p>The content that you are reading right now is hosted on a Django project, <a href="https://github.com/smattymatty/portfolio_server/blob/master/B_markdown_files/introduction.md">github here</a>, rendered through 'Django Spellbook', and deployed on DigitalOcean.</p>
+<p>TODO: Link to Django Spellbook Open Source Library</p>
+<p>TODO: Django 5 by example blog posts</p>
 <pre><code class="language-python"># Example of Django's powerful ORM
 from django.db import models
 
@@ -24,56 +33,81 @@ class Book(models.Model):
         return Book.objects.filter(author=self.author).exclude(id=self.id)
 </code></pre>
 <h2>DigitalOcean</h2>
-<p>DigitalOcean provides a robust cloud infrastructure that simplifies deployment and scaling. Their App Platform offers:
-- Automated deployments from Git
-- Built-in SSL certificate management
-- Automatic horizontal scaling
-- Container registry and Kubernetes support</p>
+<p>DigitalOcean provides a robust cloud infrastructure that simplifies deployment and scaling. Their App Platform offers:</p>
+<ul>
+<li>Automated deployments from Git</li>
+<li>Built-in SSL certificate management</li>
+<li>Automatic horizontal scaling</li>
+<li>Container registry and Kubernetes support</li>
+</ul>
+<p>One of my favorite features of DigitalOcean is their automated deployments from Git I've been using GitHub actions for a while, so this pairs perfectly with my workflow. I also love how easy it is to manage multiple domains, and <code>.env</code> variables, making it easy to test in my own environment, and then deploy to production without having to worry about configuration.</p>
 <h2>Linux</h2>
-<p>The backbone of modern web hosting, Linux provides:
-- Superior process management with systemd
-- Efficient resource utilization
-- Robust containerization support
-- Comprehensive logging and monitoring</p>
+<p>The backbone of modern web hosting, Linux provides:</p>
+<ul>
+<li>Superior process management with systemd</li>
+<li>Efficient resource utilization</li>
+<li>Robust containerization support</li>
+<li>Comprehensive logging and monitoring</li>
+</ul>
+<p>I started using Linux in 2019 because I needed access to Docker and Gunicorn, and because I wanted more contol over my system's resources in order to properly test and deploy my web applications. I love how customizable Linux is, and it's great open source community that provides a lot of great tools that are often on par with, or better than, commercial offerings. Plus, I'm a huge fan of the Linux philosophy of "Do one thing and do it well", and I think it's a great way to build a solid foundation for your web development projects.</p>
 <h1>Front End Development</h1>
 <h2>HTMX</h2>
-<p>HTMX extends HTML's capabilities to create dynamic interfaces without complex JavaScript frameworks. It excels at:
-- Ajax requests directly from HTML
-- WebSocket integration
-- Server-Sent Events
-- Dynamic page updates</p>
+<p>HTMX extends HTML's capabilities to create dynamic interfaces without complex JavaScript frameworks. It excels at:</p>
+<ul>
+<li>Ajax requests directly from HTML</li>
+<li>WebSocket integration</li>
+<li>Server-Sent Events</li>
+<li>Dynamic page updates</li>
+</ul>
 <pre><code class="language-html">&lt;!-- Dynamic content loading with HTMX --&gt;
-&lt;div hx-get=&quot;/api/latest-posts&quot; 
-     hx-trigger=&quot;every 2s&quot;
-     hx-swap=&quot;innerHTML&quot;&gt;
-  &lt;!-- Content updates every 2 seconds --&gt;
+&lt;div 
+  hx-get=&quot;/api/latest-posts&quot; 
+  hx-trigger=&quot;every 2s&quot; 
+  hx-swap=&quot;innerHTML&quot;&gt;
+  &lt;!-- Content updates every 2 seconds from the server --&gt;
 &lt;/div&gt;
 </code></pre>
+<p>The way HTMX meshes with the simplicity of HTML's original design is a game changer. Instead of overly complex JavaScript frameworks, HTMX allows you to create dynamic interfaces without the need for JavaScript. I still like using Vanilla JavaScript for more complex interactions, but HTMX is a great tool for creating simple, dynamic interfaces without the overhead of a full JavaScript framework.</p>
+<p>TODO: HTMX-ify your Django Blog</p>
 <h2>CSS and HTML</h2>
-<p>Modern CSS provides powerful features for creating responsive, accessible interfaces:
-- CSS Grid for complex layouts
-- Custom Properties for theming
-- Container Queries for component-based design
-- Logical Properties for international layouts</p>
-<pre><code class="language-css">/* Modern CSS example */
-.component {
-  container-type: inline-size;
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-  gap: clamp(1rem, 5vw, 2rem);
+<p>With modern CSS, building responsive and accessible interfaces is more streamlined:</p>
+<ul>
+<li>Flexbox for arranging elements in flexible layouts, ideal for rows, columns, and aligning items.</li>
+<li>Custom Properties to create themes that can adapt to dark/light modes or user preferences.</li>
+<li>Media Queries to ensure content displays well on any device size, with tailored layouts and font adjustments.</li>
+<li>Pseudoselectors to enhance interactive elements like buttons and links, making them visually engaging.</li>
+</ul>
+<pre><code class="language-css">/* Flexbox Layout with Media Queries */
+.container {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1.5rem;
+  padding: 1rem;
+  justify-content: space-around;
+}
+
+@media (max-width: 768px) {
+  .container {
+    flex-direction: column;
+    align-items: center;
+  }
 }
 </code></pre>
+<p>My introduction to CSS was through Tailwind, which is a utility-first CSS framework that provides a lot of the same features as Bootstrap, but with a much smaller footprint.</p>
+<p>Lately I find myself using vanilla CSS more and more, now that I have learned more about the language and its capabilities, I enjoy the freedom of creating my own classes and the pseudoselectors to go along with them.</p>
 <h2>JavaScript</h2>
-<p>JavaScript enables complex client-side interactions while maintaining accessibility:
-- Async/await for clean asynchronous code
-- Web Components for reusable elements
-- Intersection Observer for performance
-- Service Workers for offline capability</p>
+<p>JavaScript enables complex client-side interactions while maintaining accessibility:</p>
+<ul>
+<li>Async/await for clean asynchronous code</li>
+<li>Web Components for reusable elements</li>
+<li>Intersection Observer for performance</li>
+<li>Service Workers for offline capability</li>
+</ul>
 <pre><code class="language-javascript">// Modern JavaScript example
 class CustomElement extends HTMLElement {
   constructor() {
     super();
-    this.attachShadow({ mode: 'open' });
+    this.attachShadow({ mode: &quot;open&quot; });
   }
 
   connectedCallback() {
@@ -81,9 +115,14 @@ class CustomElement extends HTMLElement {
   }
 }
 </code></pre>
-<p>This tech stack combines to create web applications that are:
-- Highly performant
-- Accessible by default
-- Easy to maintain
-- Scalable for growth</p>
+<p>TODO: Link to Melvor Mod Contest
+TODO: Simple Arcade Games</p>
+<hr />
+<p>This tech stack combines to create web applications that are:</p>
+<ul>
+<li>Highly performant</li>
+<li>Accessible by default</li>
+<li>Easy to maintain</li>
+<li>Scalable for growth</li>
+</ul>
 {% endblock %}

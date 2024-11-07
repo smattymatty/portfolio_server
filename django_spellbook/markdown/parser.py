@@ -1,7 +1,6 @@
 import markdown
 
 from .extensions.django_like import DjangoLikeTagExtension
-from .extensions.code_block import CodeBlockExtension
 
 
 class MarkdownParser:
@@ -9,8 +8,13 @@ class MarkdownParser:
         self.markdown_text = markdown_text
         self.html = markdown.markdown(
             self.markdown_text,
-            extensions=[DjangoLikeTagExtension(
-            ), 'markdown.extensions.fenced_code'],
+            extensions=[
+                DjangoLikeTagExtension(),
+                'markdown.extensions.fenced_code',
+                'markdown.extensions.tables',
+                'markdown.extensions.nl2br',
+                'markdown.extensions.sane_lists',
+            ],
         )
 
     def get_html(self):

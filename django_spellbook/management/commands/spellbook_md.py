@@ -158,9 +158,11 @@ class Command(BaseCommand):
             # Check for base template setting
             base_template = getattr(
                 settings, 'SPELLBOOK_MD_BASE_TEMPLATE', None)
-            if not base_template.endswith('.html'):
-                base_template += '.html'
+
+            # Only wrap content if base_template is explicitly set
             if base_template:
+                if not base_template.endswith('.html'):
+                    base_template += '.html'
                 # Wrap content in template inheritance
                 final_content = (
                     "{{% extends '{}' %}}\n\n"

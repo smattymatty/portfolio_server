@@ -7,9 +7,9 @@ from xml.etree import ElementTree
 class DjangoLikeTagProcessor(BlockProcessor):
     RE_START = re.compile(r'{%\s*(\w+)([\s\S]+?)%}')
     RE_END = re.compile(r'{%\s*end(\w+)\s*%}')
-    RE_CLASS = re.compile(r'\.([\w-]+)')
+    RE_CLASS = re.compile(r'\.([:\w-]+)')
     RE_ID = re.compile(r'#([\w-]+)')
-    RE_ATTR = re.compile(r'(\w+)=[\'"]([^\'"]+)[\'"]')
+    RE_ATTR = re.compile(r'([@:\w-]+)=[\'"]([^\'"]+)[\'"]')
 
     def test(self, parent, block):
         return self.RE_START.search(block)

@@ -1,10 +1,14 @@
+This website is my personal portfolio, and my playground for learning new technologies and web development. I'm constantly learning and improving my skills, and I'm posting my progress here to share with others.
+
+The front-end of this website is deployed through GitHub Pages, ((Repo Here)[https://github.com/smattymatty/smattymatty.github.io]), and the back-end is hosted on DigitalOcean. 
+
 # Full Stack Development
 
 Creating beautiful, functional, and accessible user interfaces paired with robust web applications requires a carefully chosen tech stack.
 
-My go-to tech stack has changed over the years as I've learned more about web development, as as new tools came and old tools went.
+My go-to tech stack has changed over the years as I've learned more about web development. As new tools came and old tools went, I've found that I'm able to build more complex and powerful web applications with less code. 
 
-Here's an overview of the key technologies that make modern web development powerful and efficient.
+Here's an overview of the key technologies that I make use of in my projects:
 
 # Back End Development
 
@@ -12,7 +16,7 @@ Here's an overview of the key technologies that make modern web development powe
 
 Django stands out as a high-level Python web framework that encourages rapid development and clean, pragmatic design. Its built-in admin interface, ORM, and authentication system significantly reduce development time while maintaining security and scalability.
 
-Django's open & friendly community, well-written documentation, and vast supply of tutorials had made it a great option for back end development. Since it is 'batteries included', it's easy to get started with a project, and it's a great choice for small to medium sized projects.
+Django's open & friendly community, well-written documentation, and vast supply of tutorials has made it a great option for back end development. Since it is 'batteries included', it's easy to get started with a project, and it's a great choice for small to medium sized projects.
 
 Key strengths:
 
@@ -21,7 +25,7 @@ Key strengths:
 - Highly scalable with built-in caching support
 - Extensive middleware system for request/response processing
 
-The content that you are reading right now is hosted on a Django project, [github here](https://github.com/smattymatty/portfolio_server)
+The content that you are reading right now is hosted on a Django project, [github here](https://github.com/smattymatty/portfolio_server/blob/master/B_markdown_files/introduction.md), rendered through 'Django Spellbook', and deployed on DigitalOcean.
 
 TODO: Link to Django Spellbook Open Source Library
 
@@ -83,7 +87,7 @@ HTMX extends HTML's capabilities to create dynamic interfaces without complex Ja
 </div>
 ```
 
-The way HTMX meshes with the original simplicity of HTML's original design is a game changer. Instead of overly complex JavaScript frameworks, HTMX allows you to create dynamic interfaces without the need for JavaScript. I still like using Vanilla JavaScript for more complex interactions, but HTMX is a great tool for creating simple, dynamic interfaces without the overhead of a full JavaScript framework.
+The way HTMX meshes with the simplicity of HTML's original design is a game changer. Instead of overly complex JavaScript frameworks, HTMX allows you to create dynamic interfaces without the need for JavaScript. I still like using Vanilla JavaScript for more complex interactions, but HTMX is a great tool for creating simple, dynamic interfaces without the overhead of a full JavaScript framework.
 
 TODO: HTMX-ify your Django Blog
 

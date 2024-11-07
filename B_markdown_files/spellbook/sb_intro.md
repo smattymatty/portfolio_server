@@ -1,3 +1,5 @@
+# What is Django Spellbook?
+
 Django Spellbook is a Library of helpful tools, functions, and commands that feel like they're part of Django, with adding a touch of magic to your project. It includes components that make handling tasks like markdown parsing more powerful and flexible than standard Django utilities.
 
 It's a collection of tools that I've found useful in my projects, and I hope that you will too.
@@ -114,25 +116,25 @@ This setup maps your processed markdown files to URLs prefixed with /spellbook/,
 
 When you run the command, Django Spellbook processes all markdown files in the directory specified by `SPELLBOOK_MD_PATH`. Here's a step-by-step breakdown of how URLs and views are generated during this process:
 1. Parsing Markdown Files:
-    - Each markdown file is read and converted to HTML using Spellbook's markdown parser, which supports Django-like tags for more flexible styling and layout options.
-    - During this step, Spellbook builds a ProcessedFile object for each markdown file, which includes details like the original file path, the processed HTML, the template path, and a relative URL (derived from the markdown file’s path and name).
+- Each markdown file is read and converted to HTML using Spellbook's markdown parser, which supports Django-like tags for more flexible styling and layout options.
+- During this step, Spellbook builds a ProcessedFile object for each markdown file, which includes details like the original file path, the processed HTML, the template path, and a relative URL (derived from the markdown file’s path and name).
 2. Creating Templates:
-    - The processed HTML is saved as a template in the specified content app under templates/spellbook_md. This directory is automatically created if it doesn’t already exist.
-    - If `SPELLBOOK_MD_BASE_TEMPLATE` is set, the generated HTML will be wrapped in an extended base template, allowing you to keep a consistent look across your content.
+- The processed HTML is saved as a template in the specified content app under templates/spellbook_md. This directory is automatically created if it doesn’t already exist.
+- If `SPELLBOOK_MD_BASE_TEMPLATE` is set, the generated HTML will be wrapped in an extended base template, allowing you to keep a consistent look across your content.
 3. Generating Views:
-    - For each markdown file, Spellbook generates a corresponding view function, which is responsible for rendering the processed HTML template.
-    - These view functions are added to `views.py` in the `django_spellbook` app. Each view function is named dynamically based on the file’s relative path, ensuring unique view names that align with the file structure.
-    - Here’s an example of a generated view function for a markdown file at `articles/guide.md`:
-    ~~~python
-    # django_spellbook/views.py
-    def view_articles_guide(request):
-    return render(request, 'my_content_app/spellbook_md/articles/guide.html')
-    ~~~
-    TODO: Add context to the view for things like file metadata and table of contents
+- For each markdown file, Spellbook generates a corresponding view function, which is responsible for rendering the processed HTML template.
+- These view functions are added to `views.py` in the `django_spellbook` app. Each view function is named dynamically based on the file’s relative path, ensuring unique view names that align with the file structure.
+- Here’s an example of a generated view function for a markdown file at `articles/guide.md`:
+~~~python
+# django_spellbook/views.py
+def view_articles_guide(request):
+return render(request, 'my_content_app/spellbook_md/articles/guide.html')
+~~~
+TODO: Add context to the view for things like file metadata and table of contents
 4. Defining URL Patterns:
-    - For each view function, Spellbook creates a URL pattern that maps the relative URL of the markdown file to its view.
-    - These URL patterns are written to `urls.py` in the `django_spellbook` app, allowing for centralized management of the markdown routes.
-    - For example, the markdown file `articles/guide.md` would be available at the URL `spellbook/articles/guide/`, if `spellbook/` is the URL prefix added in your main `urls.py`.
+- For each view function, Spellbook creates a URL pattern that maps the relative URL of the markdown file to its view.
+- These URL patterns are written to `urls.py` in the `django_spellbook` app, allowing for centralized management of the markdown routes.
+- For example, the markdown file `articles/guide.md` would be available at the URL `spellbook/articles/guide/`, if `spellbook/` is the URL prefix added in your main `urls.py`.
 5. Accessing the Generated URLs and Views:
-    - By including `path('spellbook/', include('django_spellbook.urls'))` in your project’s main `urls.py`, you make all generated URLs accessible under the `spellbook/` prefix.
-    - This setup means that each markdown file is automatically served at a unique, human-readable URL based on its path and name.
+- By including `path('spellbook/', include('django_spellbook.urls'))` in your project’s main `urls.py`, you make all generated URLs accessible under the `spellbook/` prefix.
+- This setup means that each markdown file is automatically served at a unique, human-readable URL based on its path and name.

@@ -1,4 +1,4 @@
-{% div style="padding: 1rem; background-color: #f8f9fa" %}
+{% div style="padding: 1rem; %}
 {% enddiv %}
 
 This website is my personal portfolio, and my playground for learning new technologies and web development. I'm constantly learning and improving my skills, and I'm posting my progress here to share with others.
@@ -6,8 +6,6 @@ This website is my personal portfolio, and my playground for learning new techno
 The front-end of this website is deployed through GitHub Pages, ([Repo Here](https://github.com/smattymatty/smattymatty.github.io)), and the back-end is hosted on DigitalOcean. 
 
 My go-to tech stack has changed over the years as I've learned more about web development. As new tools came and old tools went, I've found that I'm able to build more complex and powerful web applications with less code. 
-
-**Here's an overview of the key technologies that I make use of in my projects:**
 
 # Back End Development
 

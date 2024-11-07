@@ -155,3 +155,22 @@ Content
         html = parser.get_html()
         self.assertIn(
             'class="p-4 mx-auto bg-gray-100 hover:bg-gray-200 dark:bg-gray-800"', html)
+
+
+class CodeBlockTest(TestCase):
+    """Test code blocks"""
+
+    def test_code_blocks_with_template_tags(self):
+        """Test that template tags in code blocks are escaped"""
+        md = """Here's an example:
+```markdown
+{% div .my-class %}
+content
+{% enddiv %}
+```"""
+        parser = MarkdownParser(md)
+        html = parser.get_html()
+        self.assertIn('&amp;#123;% div', html)  # Check that {% is escaped
+        self.assertIn('%&amp;#125;', html)      # Check that %} is escaped
+        # Make sure raw template tags aren't present
+        self.assertNotIn('{%', html)

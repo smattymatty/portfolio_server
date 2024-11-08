@@ -1,9 +1,9 @@
-{% div style="padding: 1rem; %}
+{% div style="padding: 1rem;" %}
 {% enddiv %}
 
-This website is my personal portfolio, and my playground for learning new technologies and web development. I'm constantly learning and improving my skills, and I'm posting my progress here to share with others.
+This website is my personal portfolio, and also a testing ground to learn new technologies within web development. I'm constantly learning and improving my skills, and I'm posting my progress here to share with others.
 
-The front-end of this website is deployed through GitHub Pages, ([Repo Here](https://github.com/smattymatty/smattymatty.github.io)), and the back-end is hosted on DigitalOcean. 
+The **front-end** of this website is deployed through GitHub Pages, ([Repo Here](https://github.com/smattymatty/smattymatty.github.io)), and the **back-end** is hosted on DigitalOcean. 
 
 My go-to tech stack has changed over the years as I've learned more about web development. As new tools came and old tools went, I've found that I'm able to build more complex and powerful web applications with less code. 
 
@@ -11,7 +11,7 @@ My go-to tech stack has changed over the years as I've learned more about web de
 
 ## Django
 
-Django stands out as a high-level Python web framework that encourages rapid development and clean, pragmatic design. Its built-in admin interface, ORM, and authentication system significantly reduce development time while maintaining security and scalability.
+Django is a high-level Python web framework that encourages rapid development and clean, pragmatic design. Its built-in admin interface, ORM, and authentication system significantly reduce development time while maintaining security and scalability.
 
 Django's open & friendly community, well-written documentation, and vast supply of tutorials has made it a great option for back end development. Since it is 'batteries included', it's easy to get started with a project, and it's a great choice for small to medium sized projects.
 
@@ -24,6 +24,7 @@ Key strengths:
 
 The content that you are reading right now is hosted on a Django project, [github here](https://github.com/smattymatty/portfolio_server/blob/master/B_markdown_files/introduction.md), rendered through 'Django Spellbook', and deployed on DigitalOcean.
 
+Django houses one of the largest and friendliest open source communities in the world, which has inspired me to contribute to the ecosystem with my own project, Django Spellbook.
 TODO: Link to Django Spellbook Open Source Library
 
 TODO: Django 5 by example blog posts
